@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的自我介绍 | 大学生前端练习</title>
+    <style>
+        /* 全局重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        }
+
+        /* 全屏容器 1920x1080 */
+        body {
+            width: 1920px;
+            height: 1080px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4eaf5 100%);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 顶部导航栏 */
+        nav {
+            width: 100%;
+            padding: 20px 120px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2d3748;
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #2b6cb0;
+        }
+
+        /* 主内容区 */
+        .container {
+            flex: 1;
+            display: flex;
+            padding: 40px 120px;
+            gap: 60px;
+            align-items: center;
+        }
+
+        /* 左侧个人信息 */
+        .left-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+        .avatar-wrapper {
+            position: relative;
+            width: 220px;
+            height: 220px;
+        }
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid #fff;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+        .status-dot {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            width: 24px;
+            height: 24px;
+            background: #48bb78;
+            border: 3px solid #fff;
+            border-radius: 50%;
+        }
+        .name-title h1 {
+            font-size: 42px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 8px;
+        }
+        .name-title p {
+            font-size: 20px;
+            color: #718096;
+        }
+        .bio-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #4a5568;
+            max-width: 520px;
+        }
+        .hobby-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .tag {
+            padding: 8px 18px;
+            background: #fff;
+            color: #2b6cb0;
+            border-radius: 24px;
+            font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .tag:hover {
+            transform: translateY(-2px);
+        }
+
+        /* 右侧技能与项目区 */
+        .right-section {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: #2b6cb0;
+            border-radius: 2px;
+        }
+
+        /* 技能进度条 */
+        .skill-item {
+            margin-bottom: 20px;
+        }
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #4a5568;
+        }
+        .skill-bar {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #2b6cb0 0%, #3182ce 100%);
+            border-radius: 4px;
+        }
+
+        /* 项目卡片 */
+        .project-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .project-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: box-shadow 0.3s;
+        }
+        .project-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+        .project-card h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+        .project-card p {
+            font-size: 14px;
+            color: #718096;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="logo">Portfolio</div>
+        <div class="nav-links">
+            <a href=" ">关于我</a >
+            <a href="#skills">技能</a >
+            <a href="#projects">项目</a >
+            <a href="#contact">联系</a >
+        </div>
+    </nav>
+
+    <!-- 主内容 -->
+    <div class="container">
+        <!-- 左侧：个人信息 -->
+        <div class="left-section">
+            <div class="avatar-wrapper">
+                <img src="微信图片_20260314170138_29_2.jpg" class="avatar">
+                <div class="status-dot"></div>
+            </div>
+            <div class="name-title">
+                <h1>邓敏</h1>
+                <p>25级产品设计1班 | 追求完美 细节的处女座 | 慢热好相处</p >
+            </div>
+            <p class="bio-text">
+                大家好！我是一名大一港澳生邓敏，喜欢研究不同类型的妆容画法，也非常喜欢跟朋友出去旅行，打卡还有一起健身。
+                平时喜欢看电影综艺、唱歌和玩手游，享受在逻辑与创意之间找到平衡的过程，期待用技术让生活更有趣。
+            </p >
+            <div class="hobby-tags">
+                <span class="tag">健身</span>
+                <span class="tag">穿搭</span>
+                <span class="tag">化妆</span>
+                <span class="tag">影视综艺</span>
+                <span class="tag">音乐</span>
+                <span class="tag">手游</span>
+            </div>
+        </div>
+
+        <!-- 右侧：技能 + 项目 -->
+        <div class="right-section">
+            <!-- 技能区 -->
+            <div id="skills">
+                <h3 class="section-title">我的爱好</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>听歌</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>健身</span>
+                        <span>65%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 65%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>化妆</span>
+                        <span>70%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 70%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>唱歌</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 项目区 -->
+            <div id="projects">
+                <h3 class="section-title">我的目标</h3>
+                <div class="project-cards">
+                    <div class="project-card">
+                        <h4>考四六级</h4>
+                        <p>虽然基础比较差，但我相信只要多花时间在学习上并努力，一定会有很大的进步。</p >
+                    </div>
+                    <div class="project-card">
+                        <h4>专业能力提高</h4>
+                        <p>我没有艺术方面的基础，所以给予我的压力会比其他同学要更大，更要多请教老师们，同学们。</p >
+                    </div>
+                    <div class="project-card">
+                        <h4>保研考研提高绩点</h4>
+                        <p>想考去香港的学校，一定要付出更多的时间和精力，也要把成绩拉高。</p >
+                    </div>
+                    <div class="project-card">
+                        <h4>提升表达与沟通</h4>
+                        <p>要敢说话、敢汇报、会社交</p >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+    
